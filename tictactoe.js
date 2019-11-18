@@ -2,8 +2,9 @@ let squares = document.querySelectorAll(".gameSquare");
 
 let playerTurn = true;
 let won = false;
-// Generella tankar: Gör en function för att kolla "Winning-positions" och gör kollen efter varje drag.
-// 
+let totalMoves = 0;
+
+
 let firstPlayer = {
     name: "PlayerOne",
     wins: 0,
@@ -21,6 +22,7 @@ function play() {
     for (let i = 0; i < squares.length; i++) {
 
         squares[i].addEventListener("click", function (e) {
+            console.log("Clicked square");
             if (won) return;
             let square = e.target;
             if (playerTurn) {
@@ -32,11 +34,11 @@ function play() {
 
 
             }
-            console.log(playerTurn);
-
-
 
             checkWinning2();
+            if (totalMoves === 9 && won === false) {
+                renderTie();
+            }
         })
     };
 }
@@ -55,6 +57,7 @@ function playerOne(div) {
 
     div.appendChild(x);
     playerTurn = !playerTurn;
+    totalMoves++;
 
 }
 
@@ -66,6 +69,7 @@ function playerTwo(div) {
     o.className = "material-icons piece";
     div.appendChild(o);
     playerTurn = !playerTurn;
+    totalMoves++;
 
 }
 
@@ -184,11 +188,40 @@ function checkWinning2() {
                 if (player === "clear") {
                     renderWin(firstPlayer);
                 } else renderWin(secPlayer);
+
             }
+
         }
         if (won) break;
     }
 }
+
+function renderTie() {
+    let div = document.createElement("div");
+    div.className = "winScreen";
+    let p = document.createElement("p");
+    p.className = "winScreen-text"
+    p.textContent = "It's a tie!";
+    div.appendChild(p);
+    let resBtn = document.createElement("button");
+    resBtn.className = "resBtn";
+    resBtn.textContent = "Play again";
+    div.appendChild(resBtn);
+    document.body.appendChild(div);
+    resBtn.addEventListener("click", function () {
+        document.body.removeChild(div);
+        for (let i = 0; i < squares.length; i++) {
+            squares[i].textContent = "";
+        };
+        console.log(playerTurn, won, totalMoves);
+
+        playerTurn = true;
+        totalMoves = 0;
+
+
+    });
+
+};
 
 function renderWin(player) {
     /* let bg = document.createElement("div");
@@ -203,7 +236,7 @@ function renderWin(player) {
     div.appendChild(p);
     let resBtn = document.createElement("button");
     resBtn.className = "resBtn";
-    resBtn.textContent = "Reset";
+    resBtn.textContent = "Play again";
     div.appendChild(resBtn);
     document.body.appendChild(div);
     resBtn.addEventListener("click", function () {
@@ -215,7 +248,8 @@ function renderWin(player) {
         won = false;
         playerTurn = true;
         player.wins++;
-        play();
+        totalMoves = 0;
+
         console.log(playerTurn);
     })
 
