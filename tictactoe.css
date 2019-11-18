@@ -96,10 +96,22 @@ body {
 }
 
 .resBtn {
-    height: 35px;
-    width: 65px;
+    height: 65px;
+    width: 190px;
     background-image: linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%);
+    border: 1px transparent;
+    border-radius: 5px;
+    box-shadow: 2px 3px 13px 3px rgba(0, 0, 0, 0.48);
+    margin: 55px;
+}
 
+.resBtn:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.resBtn:active {
+    opacity: 0.6;
 }
 
 /* .winScreen-BG {
@@ -112,13 +124,28 @@ body {
 
 .winScreen {
     height: 400px;
-    width: 300px;
+    width: 80%;
+    margin: auto;
     position: absolute;
-    top: 45%;
-    left: 45%;
+    top: 27%;
+    left: 0px;
     z-index: 2;
     opacity: 1;
     background-color: white;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: flex-end;
+    box-shadow: 0px 3px 8px 3px rgba(0, 0, 0, 0.58);
+    margin-left: 10%;
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
+}
+
+.winScreen-text {
+    font-size: 48px;
+    text-align: center;
+    margin: 55px;
 }
 
 .hide {
