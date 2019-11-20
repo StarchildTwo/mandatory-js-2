@@ -4,37 +4,27 @@ let playerTurn = true;
 let won = false;
 let totalMoves = 0;
 
-
 let firstPlayer = {
     name: "PlayerOne",
     wins: 0,
-
 }
 
 let secPlayer = {
     name: "PlayerTwo",
     wins: 0,
-
 }
 
 function play() {
-
     for (let i = 0; i < squares.length; i++) {
-
         squares[i].addEventListener("click", function (e) {
             console.log("Clicked square");
             if (won) return;
             let square = e.target;
             if (playerTurn) {
                 playerOne(square);
-
-
             } else {
                 playerTwo(square);
-
-
             }
-
             checkWinning2();
             if (totalMoves === 9 && won === false) {
                 renderTie();
@@ -46,123 +36,31 @@ function play() {
 let startScreen = document.querySelector(".start");
 startScreen.addEventListener("click", function () {
     startScreen.classList.toggle("hide");
+    let score = document.querySelector(".score-cont");
+    score.classList.toggle("hide");
 });
 
 function playerOne(div) {
     if (div.textContent) return;
-
     let x = document.createElement("i");
     x.textContent = "clear";
     x.className = "material-icons piece";
-
     div.appendChild(x);
     playerTurn = !playerTurn;
     totalMoves++;
-
 }
 
 function playerTwo(div) {
     if (div.textContent) return;
     let o = document.createElement("i");
     o.textContent = "radio_button_unchecked";
-
     o.className = "material-icons piece";
     div.appendChild(o);
     playerTurn = !playerTurn;
     totalMoves++;
-
 }
 
 
-/* function checkWinning() { // Funkar bra, men ful lösning.
-    // check if someone won or tie.
-
-    for (let i = 0; i < squares.length; i++) {
-        console.log(squares[i].innerText)
-        if (squares[0].innerText === "clear" && squares[1].innerText === "clear" && squares[2].innerText === "clear") {
-            console.log("Player one Won!");
-            won = true;
-            renderWin(playerOne)
-            return;
-        } else if (squares[0].innerText === "radio_button_unchecked" && squares[1].innerText === "radio_button_unchecked" && squares[2].innerText === "radio_button_unchecked") {
-            console.log("Player two Won!");
-            won = true;
-            renderWin(playerTwo)
-            return;
-        } else if (squares[3].innerText === "clear" && squares[4].innerText === "clear" && squares[5].innerText === "clear") {
-            console.log("Player one Won!");
-            won = true;
-            renderWin(playerOne)
-            return;
-        } else if (squares[3].innerText === "radio_button_unchecked" && squares[4].innerText === "radio_button_unchecked" && squares[5].innerText === "radio_button_unchecked") {
-            console.log("Player two Won!");
-            won = true;
-            renderWin(playerTwo)
-            return;
-        } else if (squares[6].innerText === "clear" && squares[7].innerText === "clear" && squares[8].innerText === "clear") {
-            console.log("Player one Won!");
-            won = true;
-            renderWin(playerOne)
-            return;
-        } else if (squares[6].innerText === "radio_button_unchecked" && squares[7].innerText === "radio_button_unchecked" && squares[8].innerText === "radio_button_unchecked") {
-            console.log("Player two Won!");
-            won = true;
-            renderWin(playerTwo)
-            return;
-        } else if (squares[0].innerText === "clear" && squares[3].innerText === "clear" && squares[7].innerText === "clear") {
-            console.log("Player one Won!");
-            won = true;
-            renderWin(playerOne)
-            return;
-        } else if (squares[0].innerText === "radio_button_unchecked" && squares[3].innerText === "radio_button_unchecked" && squares[7].innerText === "radio_button_unchecked") {
-            console.log("Player two Won!");
-            won = true;
-            renderWin(playerTwo)
-            return;
-        } else if (squares[1].innerText === "clear" && squares[4].innerText === "clear" && squares[8].innerText === "clear") {
-            console.log("Player one Won!");
-            won = true;
-            renderWin(playerOne)
-            return;
-        } else if (squares[1].innerText === "radio_button_unchecked" && squares[4].innerText === "radio_button_unchecked" && squares[8].innerText === "radio_button_unchecked") {
-            console.log("Player two Won!");
-            won = true;
-            renderWin(playerTwo)
-            return;
-        } else if (squares[2].innerText === "clear" && squares[5].innerText === "clear" && squares[8].innerText === "clear") {
-            console.log("Player one Won!");
-            won = true;
-            renderWin(playerOne)
-            return;
-        } else if (squares[2].innerText === "radio_button_unchecked" && squares[5].innerText === "radio_button_unchecked" && squares[8].innerText === "radio_button_unchecked") {
-            console.log("Player two Won!");
-            won = true;
-            renderWin(playerTwo)
-            return;
-        } else if (squares[0].innerText === "clear" && squares[4].innerText === "clear" && squares[8].innerText === "clear") {
-            console.log("Player one Won!");
-            won = true;
-            renderWin(playerOne)
-            return;
-        } else if (squares[0].innerText === "radio_button_unchecked" && squares[4].innerText === "radio_button_unchecked" && squares[8].innerText === "radio_button_unchecked") {
-            console.log("Player two Won!");
-            won = true;
-            renderWin(playerTwo)
-            return;
-        } else if (squares[2].innerText === "clear" && squares[4].innerText === "clear" && squares[6].innerText === "clear") {
-            console.log("Player one Won!");
-            won = true;
-            return;
-        } else if (squares[2].innerText === "radio_button_unchecked" && squares[4].innerText === "radio_button_unchecked" && squares[6].innerText === "radio_button_unchecked") {
-            console.log("Player two Won!");
-            renderWin(playerTwo)
-            won = true;
-            return;
-        }
-
-    }
-} */
-// Kom på något smart sätt att kolla vinster.
 function checkWinning2() {
     const winStates = [ // Dessa är helt enkelt alla möjliga vinstrader gjorda i arrayer i en array. 
         [0, 1, 2], // horisontell rad
@@ -188,9 +86,7 @@ function checkWinning2() {
                 if (player === "clear") {
                     renderWin(firstPlayer);
                 } else renderWin(secPlayer);
-
             }
-
         }
         if (won) break;
     }
@@ -213,21 +109,12 @@ function renderTie() {
         for (let i = 0; i < squares.length; i++) {
             squares[i].textContent = "";
         };
-        console.log(playerTurn, won, totalMoves);
-
         playerTurn = true;
         totalMoves = 0;
-
-
     });
-
 };
 
 function renderWin(player) {
-    /* let bg = document.createElement("div");
-    bg.className = "winScreen-BG";
-    document.body.appendChild(bg); */
-
     let div = document.createElement("div");
     div.className = "winScreen";
     let p = document.createElement("p");
@@ -244,7 +131,6 @@ function renderWin(player) {
         for (let i = 0; i < squares.length; i++) {
             squares[i].textContent = "";
         };
-
         won = false;
         playerTurn = true;
         player.wins++;
@@ -255,6 +141,5 @@ function renderWin(player) {
         playerTwoWins.innerText = secPlayer.wins;
         console.log(playerTurn);
     })
-
 };
 play();
