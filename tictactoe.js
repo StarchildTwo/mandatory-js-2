@@ -249,7 +249,10 @@ function renderWin(player) {
         playerTurn = true;
         player.wins++;
         totalMoves = 0;
-
+        let playerOneWins = document.querySelector(".playerOneWins");
+        playerOneWins.innerText = firstPlayer.wins;
+        let playerTwoWins = document.querySelector(".playerTwoWins");
+        playerTwoWins.innerText = secPlayer.wins;
         console.log(playerTurn);
     })
 

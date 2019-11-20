@@ -7,9 +7,12 @@
 .content {
     width: 100%;
     background-color: rgb(27, 27, 27);
-    height: 900px;
+
     display: flex;
+    flex-direction: column;
     justify-items: center;
+    justify-content: center;
+
 
 }
 
@@ -19,8 +22,9 @@
     background-color: white;
     margin: auto;
     display: flex;
-    flex-flow: row wrap;
-
+    flex-flow: column wrap;
+    margin-bottom: 40px;
+    margin-top: 40px;
     border: 7px solid transparent;
     border-image: linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%);
     border-image-slice: 1;
@@ -33,6 +37,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.gameSquare:hover {
+    background-color: rgb(161, 161, 161);
+    opacity: 0.6;
 }
 
 body {
@@ -66,7 +75,18 @@ body {
     top: -65px;
     left: -65px;
     color: black;
-    transition: 0.5s;
+    animation: title1 1s
+}
+
+@keyframes title1 {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
 }
 
 .title {
@@ -75,7 +95,19 @@ body {
     position: absolute;
     top: 35%;
     left: 45%;
-    transition: 1s;
+
+    animation: title2 2.5s;
+}
+
+@keyframes title2 {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
 }
 
 .title::after {
@@ -85,7 +117,18 @@ body {
     top: 65px;
     left: 85px;
     color: black;
-    transition: 1.5s;
+    animation: title3 3.5s;
+}
+
+@keyframes title3 {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
 }
 
 .front-text {
@@ -114,9 +157,24 @@ body {
     opacity: 0.6;
 }
 
-.score {
+.score-cont {
+    width: 250px;
+    height: 70px;
+    padding: 15px;
     position: absolute;
+    top: 50px;
+    left: 120px;
+}
 
+.score {
+    color: white;
+    font-size: 26px;
+    display: flex;
+
+}
+
+.score>p {
+    padding: 5px;
 }
 
 .winScreen {
@@ -124,7 +182,7 @@ body {
     width: 80%;
     margin: auto;
     position: absolute;
-    top: 27%;
+    top: 20%;
     left: 0px;
     z-index: 2;
     opacity: 1;
@@ -144,6 +202,9 @@ body {
     text-align: center;
     margin: 55px;
 }
+
+
+
 
 .hide {
     display: none;
