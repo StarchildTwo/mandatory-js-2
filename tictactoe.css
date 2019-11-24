@@ -45,7 +45,7 @@
 }
 
 .gameSquare:hover {
-    background-color: rgb(187, 187, 187);
+    background-color: rgba(27, 27, 27, 0.253);
     opacity: 0.4;
     cursor: pointer;
 }

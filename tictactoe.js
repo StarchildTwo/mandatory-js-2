@@ -17,7 +17,6 @@ let secPlayer = {
 function play() {
     for (let i = 0; i < squares.length; i++) {
         squares[i].addEventListener("click", function (e) {
-            console.log("Clicked square");
             if (won) return;
             let square = e.target;
             if (playerTurn) {
@@ -62,26 +61,26 @@ function playerTwo(div) {
 
 
 function checkWinning2() {
-    const winStates = [ // Dessa är helt enkelt alla möjliga vinstrader gjorda i arrayer i en array. 
-        [0, 1, 2], // horisontell rad
+    const winStates = [ // Possible winning rows
+        [0, 1, 2], // horisontal
         [3, 4, 5],
         [6, 7, 8],
-        [0, 3, 6], // vertikal
+        [0, 3, 6], // vertical
         [1, 4, 7],
         [2, 5, 8],
         [0, 4, 8], // Diagonal
         [2, 4, 6]
     ]
-    for (let i = 0; i < winStates.length; i++) { // Loop för hela arrayen
-        let player = null; // Null för att hålla reda på första klicket på respektive rad.
+    for (let i = 0; i < winStates.length; i++) { // Looping array.
+        let player = null; // Null is for keeping track of first click on square.
         for (let square of winStates[i]) {
 
-            if (player === null && squares[square].innerText !== "") { // Om första klicket (alltså null) och rutan inte är tom ->
-                player = squares[square].innerText; // Player = X el O.
-            } else if (player !== squares[square].innerText) { // Om rutan jämte "player"-rutan blir tagen av motståndaren kommer den raden helt enkelt inte räknas med. därav break;
+            if (player === null && squares[square].innerText !== "") { // If first click and square is not empty ->
+                player = squares[square].innerText; // Player = X or O.
+            } else if (player !== squares[square].innerText) { // if the square next to first one is not same, break;
                 break;
-            } else if (square === winStates[i][winStates[i].length - 1]) { // om föregående inte händer kommer det att bli en hel rad när man klickar i sista rutan för respektive vinstrad.
-                // Då görs antagandet att alla rutor i respektive rad är av samma "X" eller "O".
+            } else if (square === winStates[i][winStates[i].length - 1]) { // If statement above does not happen this means full row of X or O = winning row.
+
                 won = true;
                 if (player === "clear") {
                     renderWin(firstPlayer);
@@ -139,7 +138,6 @@ function renderWin(player) {
         playerOneWins.innerText = firstPlayer.wins;
         let playerTwoWins = document.querySelector(".playerTwoWins");
         playerTwoWins.innerText = secPlayer.wins;
-        console.log(playerTurn);
     })
 };
 play();
